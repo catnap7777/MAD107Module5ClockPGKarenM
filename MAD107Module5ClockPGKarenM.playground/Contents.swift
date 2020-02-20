@@ -1,10 +1,10 @@
 import Cocoa
 
 var str = "Hello, playground"
-
+//.. variables for date/time current
 var currentDate = Date()
 var currentCalendar = Calendar.current
-
+//.. variables for date/time temp
 var tempDate = Date()
 var tempCalendar = Calendar.current
 var tempHours = 0
@@ -13,23 +13,12 @@ var tempSeconds = 0
 
 var formattedHours = 0
 
-// *** Get components using current Local & Timezone ***
-//print(currentCalendar.dateComponents([.year, .month, .day, .hour, .minute], from: currentDate))
-
-// *** define calendar components to use as well Timezone to UTC ***
-//currentCalendar.timeZone = TimeZone(identifier: "UTC")!
-
-// *** Get All components from date ***
-//var components = currentCalendar.dateComponents([.hour, .year, .minute], from: currentDate)
-//print("All Components : \(components)")
-
 // *** Get Individual components from date ***
 var currentHours = currentCalendar.component(.hour, from: currentDate)
 var currentMinutes = currentCalendar.component(.minute, from: currentDate)
 var currentSeconds = currentCalendar.component(.second, from: currentDate)
-//print("\(currentHours):\(currentMinutes):\(currentSeconds)")
 
-
+//.. function to get current date/time -> pass back tuple with this info
 func getMyDateTime() -> (oHours:Int, oMinutes:Int, oSeconds:Int) {
     
     currentDate = Date()
@@ -46,25 +35,27 @@ func getMyDateTime() -> (oHours:Int, oMinutes:Int, oSeconds:Int) {
 
 print("**** Clock with Current Time ****\n")
 
+//.. loop to run for a reasonable amount of times to print out "clock" values
 for _ in (1...10000) {
     
     tempHours = currentHours
     tempMinutes = currentMinutes
     tempSeconds = currentSeconds
     
+    //.. call function
     var t = getMyDateTime()
     
+    //.. check to see if hh, mm, ss are different from previous call.. if they are, the time "changed".. so print the line
     if (t.oHours != tempHours) || (t.oMinutes != tempMinutes) || (t.oSeconds != tempSeconds) {
-        
+       
+        //.. "convert" hours so that military time is NOT shown
         if t.oHours > 12 {
             formattedHours = t.oHours - 12
         }
         
         print("****  \(formattedHours) : \(t.oMinutes) : \(t.oSeconds)")
-    
         
     }
-    
 }
 
 
