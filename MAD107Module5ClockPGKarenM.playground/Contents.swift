@@ -58,11 +58,12 @@ for _ in (1...10000) {
         
         if t.oHours > 12 {
             formattedHours = t.oHours - 12
+            print("****  \(formattedHours) : \(t.oMinutes) : \(t.oSeconds)")
+        } else {
+            print("****  \(t.oHours) : \(t.oMinutes) : \(t.oSeconds)")
+
         }
-        
-        print("****  \(formattedHours) : \(t.oMinutes) : \(t.oSeconds)")
     
-        
     }
     
 }
